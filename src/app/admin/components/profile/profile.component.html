@@ -1,0 +1,44 @@
+<form [formGroup]="formuser" (ngSubmit)="saveUser($event)">
+  <mat-card>
+
+    <mat-card-header><mat-card-title>Bienvenido, {{this.usuario.nombre}}</mat-card-title></mat-card-header>
+    <mat-card-header><mat-card-title>Gestiona toda tu información desde aquí</mat-card-title></mat-card-header>
+
+    <mat-form-field appearance="legacy">
+      <input  placeholder="Usuario" formControlName="user" matInput type="text" maxlength="20">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <input  placeholder="Nombre" formControlName="nombre" matInput type="text">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <input  placeholder="Apellido" formControlName="apellido" matInput type="text">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <input  placeholder="Email" formControlName="email" matInput type="text">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+        <input  placeholder="Email" formControlName="transportista" matInput type="text">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+        <input  placeholder="Email" formControlName="rol" matInput type="text">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <input placeholder="Teléfono" formControlName="telefono" matInput type="tel">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <input  placeholder="Contraseña" formControlName="password" matInput type="password">
+    </mat-form-field>
+    <br>
+  </mat-card>
+  <mat-card-actions>
+    <button [disabled]="formuser.invalid"  mat-raised-button color="primary" type="submit">Guardar</button>
+    <button routerLink="/admin/users" mat-raised-button color="primary">Cancelar</button>
+  </mat-card-actions>
+</form>

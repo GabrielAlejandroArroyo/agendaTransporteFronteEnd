@@ -1,0 +1,192 @@
+<!-- <button *ngIf="this.esPendientes && this.esTransportista " (click)="reservar(row.cabecera)" mat-mini-fab color="primary" matTooltip="Reservar viaje">
+  <mat-icon>update</mat-icon>
+</button> -->
+<button *ngIf="this.hayDetalles" (click)="verDetalle(id)" mat-mini-fab color="primary" matTooltip="Ver datalle">
+  <mat-icon>update</mat-icon>
+</button>
+<form [formGroup]="formviaje" (ngSubmit)="save($event)">
+  <mat-card>
+    <!-- Numero planificaicon -->
+    <div *ngIf="!isAddMode" >
+      <mat-form-field appearance="legacy">
+        <input  placeholder="Numero Planificacion" formControlName="numeroPlanificacion" matInput type="text" maxlength="30" readonly>
+      </mat-form-field>
+    </div>
+    <!-- Numero Estado -->
+    <div *ngIf="!isAddMode" formGroupName = "estado">
+      <mat-form-field  class="largefield" appearance="legacy">
+        <input  placeholder="Estado" formControlName="descripcion" matInput type="text" maxlength="140" readonly >
+      </mat-form-field>
+    </div>
+
+    <!-- Almacen/Origen  -->
+    <div  *ngIf="!isAddMode" formGroupName = "almacen">
+      <mat-form-field class="largefield" appearance="legacy">
+        <input placeholder="Origen" formControlName="descripcion" matInput type="text" maxlength="140" readonly >
+      </mat-form-field>
+    </div>
+    <div  *ngIf="isAddMode">
+      <mat-form-field *ngIf="isAddMode" appearance="legacy" >
+        <input type="text"
+                placeholder="Origen"
+                aria-label="Number"
+                matInput
+                [formControl]="almacenListCtrl"
+                [matAutocomplete]="almacenauto"
+                >
+        <mat-autocomplete #almacenauto="matAutocomplete" (optionSelected)='getAlmacen($event.option.value)'  >
+<!--         <mat-autocomplete #almacenauto="matAutocomplete" [displayWith]="displayAlmacentFn" > -->
+          <mat-option  *ngFor="let almacen of filteredAlmacen | async" [value]="almacen.idDescripcion" >
+            {{almacen.idDescripcion}}
+          </mat-option>
+        </mat-autocomplete>
+        <button type="button" *ngIf="this.almacenSelected && !this.isViewMode " mat-button matSuffix mat-icon-button aria-label="Clear" (click)='clearalmacen()'>
+          <mat-icon>close</mat-icon>
+        </button>
+<!--         <mat-error *ngFor="let validation of validation_msgs.almacenListCtrl">
+          <div *ngIf="almacenListCtrl.hasError(validation.type)">
+            {{validation.message}}
+          </div>
+        </mat-error> -->
+
+
+
+        <mat-error class="error-message" *ngIf="almacenListCtrl.touched && almacenListCtrl.hasError('required')">Debe seleccionar un Origen</mat-error>
+
+      </mat-form-field>
+    </div>
+
+    <!-- Destino  -->
+    <div *ngIf="!isAddMode" formGroupName = "destino">
+      <mat-form-field  class="largefield" appearance="legacy">
+        <input placeholder="Destino" formControlName="nombre" matInput type="text" maxlength="140" readonly >
+      </mat-form-field>
+    </div>
+    <div *ngIf="isAddMode" >
+      <mat-form-field *ngIf="isAddMode" appearance="legacy" >
+        <input type="text"
+                placeholder="Destino"
+                aria-label="Number"
+                matInput
+                [formControl]="destinoListCtrl"
+                [matAutocomplete]="destinoauto"
+                >
+        <mat-autocomplete #destinoauto="matAutocomplete" (optionSelected)='getDestino($event.option.value)' >
+          <mat-option  *ngFor="let destino of filteredDestino | async" [value]="destino.idDescripcion" >
+            {{destino.idDescripcion}}
+          </mat-option>
+        </mat-autocomplete>
+        <button type="button" *ngIf="this.destinoSelected && !this.isViewMode " mat-button matSuffix mat-icon-button aria-label="Clear" (click)='clearDestino()'>
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error class="error-message" *ngIf="destinoListCtrl.touched && destinoListCtrl.hasError('required')">Debe seleccionar un Destino</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Fecha  -->
+    <mat-form-field appearance="legacy">
+      <input  *ngIf="isAddMode" placeholder="Fecha Planificacion" formControlName="fechaCarga" matInput type="date" maxlength="20" >
+      <input  *ngIf="!isAddMode" placeholder="Fecha Planificacion" formControlName="fechaCarga" matInput type="datetime" maxlength="20" readonly>
+      <mat-error class="error-message" *ngIf="fechaCargafield.touched && fechaCargafield.hasError('required')">Debe ingresar una fecha de planificacion</mat-error>
+    </mat-form-field>
+    <br>
+
+    <div *ngIf="isAddMode">
+      <mat-form-field appearance="legacy">
+        <input  *ngIf="isAddMode" placeholder="Cantidad " formControlName="cantidad" matInput type="number">
+        <mat-error class="error-message" *ngIf="cantidadfield.touched && cantidadfield.hasError('required')">Debe ingresar una cantidad </mat-error>
+        <mat-error class="error-message" *ngIf="cantidadfield.touched && cantidadfield.hasError('min')">Debe ingresar una cantidad mayor o igual a 1</mat-error>
+      </mat-form-field>
+      <br>
+    </div>
+
+
+
+    <div *ngIf="!isAddMode" >
+      <mat-form-field appearance="legacy" >
+        <input  placeholder="id planificacion" formControlName="idCabeceraPlanificacion" matInput type="text" maxlength="20" readonly>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="!isAddMode" >
+      <mat-form-field  appearance="legacy" >
+        <input  *ngIf="!isAddMode" placeholder="Tipo" formControlName="tipoCarga" matInput type="text" maxlength="20" readonly>
+      </mat-form-field>
+    </div>
+
+
+    <mat-form-field *ngIf="!isAddMode" appearance="legacy" >
+      <input type="text"
+              placeholder="Equipo"
+              aria-label="Number"
+              matInput
+              [formControl]="equipoListCtrl"
+              [matAutocomplete]="equipoauto"
+              [readonly]="isViewMode">
+      <mat-autocomplete #equipoauto="matAutocomplete" (optionSelected)='getEquipo($event.option.value)'>
+        <mat-option  *ngFor="let equipo of filteredEquipo | async" [value]="equipo.idDescripcion" >
+          {{equipo.idDescripcion}}
+        </mat-option>
+      </mat-autocomplete>
+      <button type="button" *ngIf="this.equipoSelected && !this.isViewMode " mat-button matSuffix mat-icon-button aria-label="Clear" (click)='clearEquipo()'>
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error class="error-message" *ngIf="equipoListCtrl.touched && equipoListCtrl.hasError('required')">Debe seleccionar un equipo</mat-error>
+    </mat-form-field>
+    <br>
+
+
+
+    <mat-form-field *ngIf="!isAddMode" appearance="legacy">
+      <input type="text"
+              placeholder="Chofer"
+              aria-label="Number"
+              matInput
+              [formControl]="choferListCtrl"
+              [matAutocomplete]="choferauto"
+              [readonly]="isViewMode">
+      <mat-autocomplete #choferauto="matAutocomplete" (optionSelected)='getChofer($event.option.value)' >
+        <mat-option  *ngFor="let chofer of filteredChofer | async" [value]="chofer.idDescripcion" >
+          {{chofer.idDescripcion}}
+        </mat-option>
+      </mat-autocomplete>
+      <button type="button" *ngIf="this.choferSelected && !this.isViewMode " mat-button matSuffix mat-icon-button aria-label="Clear" (click)='clearChofer()'>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field *ngIf="!isAddMode" appearance="legacy">
+      <input *ngIf="!isAddMode" type="text"
+              placeholder="Tractor"
+              aria-label="Number"
+              matInput
+              [formControl]="tractorListCtrl"
+              [matAutocomplete]="tractorauto"
+              [readonly]="isViewMode">
+      <mat-autocomplete #tractorauto="matAutocomplete" (optionSelected)='getTractor($event.option.value)' >
+        <mat-option  *ngFor="let tractor of filteredTractor | async" [value]="tractor.idDescripcion" >
+          {{tractor.idDescripcion}}
+        </mat-option>
+      </mat-autocomplete>
+      <button type="button" *ngIf="this.tractorSelected && !this.isViewMode" mat-button matSuffix mat-icon-button aria-label="Clear" (click)='clearTractor()'>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-card>
+
+  <mat-card-actions>
+
+    <!-- <button [disabled]="formviaje.invalid || isViewMode"  mat-raised-button color="primary" type="submit">Guardar</button>     -->
+    <button *ngIf="!isViewMode" mat-raised-button color="primary" type="submit">Guardar</button>
+    <button routerLink="/admin/viajes" mat-raised-button color="primary">Cancelar</button>
+  </mat-card-actions>
+</form>
+<!-- <p>Formulario : {{formviaje.valid}}</p>
+<br>
+<p>control equipo   :{{equipoListCtrl.valid}} </p>
+<br>
+<p>Control Origen :{{almacenListCtrl.valid}}</p>
+<br>
+<p>Control Destino :{{destinoListCtrl.valid}}</p>
+<br> -->

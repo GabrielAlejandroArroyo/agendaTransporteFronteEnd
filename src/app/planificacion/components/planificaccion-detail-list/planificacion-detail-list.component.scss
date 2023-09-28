@@ -1,0 +1,155 @@
+* {
+  box-sizing: border-box;
+  margin: 2px;
+  padding: 2px;
+}
+
+table {
+ width: 100%;
+ flex-wrap: wrap;
+}
+
+.mat-form-field {
+ font-size: 14px;
+ width: 100%;
+}
+
+td, th {
+ width: 30%;
+}
+
+.mat-column-idDetallePlanificacion {
+ width: 3%;
+}
+
+.mat-column-fechaHoraCreacion {
+ width: 15%;
+}
+
+.mat-column-usuarioModificador {
+ width: 3%;
+}
+
+.mat-column-equipo {
+ width: 10%;
+ display: none;
+}
+
+.mat-column-chofer {
+ width: 10%;
+ display: none;
+}
+
+.mat-column-estado {
+ width: 10%;
+}
+
+.mat-column-action {
+ width: 10%;
+ align:left;
+ //align-items: flex-end;
+}
+
+.mat-column-usuarioModificador {
+ width: 10%;
+ align:left;
+}
+
+.mat-icon {
+
+}
+
+@media screen and (max-width:1024px){
+
+}
+
+
+@media screen and (max-width:730px){
+
+ .mat-column-idDetallePlanificacion {
+   font-size: 11px;
+   display: none;
+   padding-left: 1%;
+ }
+
+ .mat-column-fechaHoraCreacion {
+   font-size: 11px;
+   width: 25%;
+   padding-left: 1%;
+ }
+
+ .mat-column-usuarioModificador {
+   font-size: 11px;
+   width: 25%;
+/*     display: none; */
+   padding-left: 1%;
+ }
+
+ .mat-column-estado {
+   font-size: 11px;
+   width: 30%;
+   padding-left: 1%;
+ }
+
+ .mat-column-action {
+   font-size: 11px;
+   display: inline-flex;
+   width: 25%;
+   padding-left: 1%;
+ }
+
+}
+
+@media screen and (max-width:480px){
+ .mat-column-equipo {
+   font-size: 11px;
+   display: none;
+ }
+
+ .mat-column-chofer {
+   font-size: 11px;
+   display: none;
+ }
+
+ .mat-column-fechaHoraCreacion {
+   font-size: 11px;
+   width: 33%;
+ }
+
+ .mat-column-usuarioModificador {
+   font-size: 11px;
+   width: 33%;
+/*     display: none; */
+ }
+ .mat-column-estado {
+   font-size: 11px;
+   width: 33%;
+ }
+ .mat-column-action {
+   font-size: 11px;
+   width: 33%;
+ }
+}
+
+@media screen and (max-width:320px){
+ .mat-column-fechaHoraCreacion {
+   font-size: 10px;
+/*     width: 15%; */
+ }
+
+ .mat-column-estado {
+   font-size: 10px;
+/*     width: 30%; */
+ }
+
+ .mat-column-usuarioModificador {
+   font-size: 10px;
+   width: 33%;
+   display: none;
+ }
+
+ .mat-column-action {
+   font-size: 10px;
+ }
+
+}

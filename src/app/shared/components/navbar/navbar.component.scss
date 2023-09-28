@@ -1,0 +1,22 @@
+
+@media (min-width: 576px) {
+
+  .header .navbar {
+    padding: 0.8rem 1rem 1rem
+  }
+
+  .header .navbar .nav-item {
+    margin: 0 1rem 0 0
+  }
+
+  .header .navbar .nav-item.active {
+    border-color: #005DB4;
+    border-width: 3px;
+  }
+
+  .header .navbar .dropdown-menu {
+    margin-bottom: 1rem
+  }
+
+}
+

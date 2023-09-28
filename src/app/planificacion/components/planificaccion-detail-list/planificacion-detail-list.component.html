@@ -1,0 +1,97 @@
+<mat-card>
+  <mat-card-header><mat-card-title>Detalle de planificacion</mat-card-title></mat-card-header>
+
+  <div class="tablameterialSort">
+<!--     <button *ngIf="this.esAdmin" routerLink="create" mat-mini-fab color="primary" matTooltip="Detalle de viaje">
+      <mat-icon>control_point</mat-icon>
+    </button> -->
+    <mat-form-field>
+      <mat-label>Filtro</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="planificacionDetallesData" matSort>
+
+        <ng-container matColumnDef="idDetallePlanificacion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+          <td mat-cell *matCellDef="let row"> {{row.idDetallePlanificacion}} </td>
+        </ng-container>
+
+        idDetallePlanificacion
+
+        <ng-container matColumnDef="fechaHoraCreacion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+          <td mat-cell *matCellDef="let row">
+            <ng-container *ngIf="row.fechaHoraCreacion; else defaultValue">
+              {{row.fechaHoraCreacion}}
+            </ng-container>
+          </td>
+        </ng-container>
+
+         <ng-container matColumnDef="usuarioModificador">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</th>
+          <td mat-cell *matCellDef="let row">
+            <ng-container *ngIf="row.user; else defaultValue">
+              {{row.usuario.user}}
+            </ng-container>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+          <td mat-cell *matCellDef="let row">
+            <ng-container *ngIf="row.estado; else defaultValue">
+              {{row.estado.descripcion}}
+            </ng-container>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="equipo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Equipo</th>
+          <td mat-cell *matCellDef="let row">
+            <ng-container *ngIf="row.equipo; else defaultValue">
+              {{row.equipo.idEquipo}}
+            </ng-container>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="chofer">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Chofer</th>
+          <td mat-cell *matCellDef="let row">
+            <ng-container *ngIf="row.chofer; else defaultValue">
+              {{row.chofer.idChofer}}
+            </ng-container>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let row" class="action-link">
+            <button (click)="ver(row.idDetallePlanificacion)" mat-mini-fab color="primary" matTooltip="Ver">
+              <mat-icon>read_more</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4" *ngIf="input.value===''">No hay usuarios definidos</td>
+          <td class="mat-cell" colspan="4" *ngIf="input.value!=''">No hay usuarios con "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+      <ng-template #defaultValue>
+        --
+      </ng-template>
+    </div>
+  </div>
+
+</mat-card>
+

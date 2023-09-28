@@ -1,0 +1,16 @@
+<mat-form-field [formGroup]="formData">
+    <mat-select formControlName="valueSelect" placeholder={{this.placeholder}} #singleSelect>
+        <mat-option>
+            <ngx-mat-select-search [formControl]="inputFilter" 
+                [placeholderLabel]="'Buscar'"
+                [noEntriesFoundLabel]="'No hay resultados'"
+                [indexAndLengthScreenReaderText]="' de '">
+                <i class="mdi mdi-close menu-icon" ngxMatSelectSearchClear></i>
+            </ngx-mat-select-search>
+        </mat-option>
+<!--         <mat-option value='-1' selected>{{inputType}}</mat-option> -->
+        <mat-option *ngFor="let data of controlFilter | async" [value]="data">
+            {{ data[dataShow] }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

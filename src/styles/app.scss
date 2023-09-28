@@ -1,0 +1,166 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/scss/bootstrap';
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+.error-snackbar{
+  background-color: rgb(153, 50, 50);
+  //background: mat-color($rp-warn, 400);
+  color:lightgoldenrodyellow;
+}
+
+.success-snackbar{
+  background-color: rgb(29, 102, 29);
+  //background: mat-color($rp-accent, 400);
+  color:lightgreen;
+}
+
+.notif-success {
+  color: #155724 !important; // green
+  background-color: #d4edda !important;
+  border-color: #c3e6cb !important;
+  .mat-simple-snackbar-action {
+      color: #155724 !important;
+  }
+}
+
+// body {
+//   font-family: Roboto, Arial, sans-serif;
+//   margin: 0;
+// }
+// .basic-container {
+//   padding: 30px;
+// }
+// .version-info {
+//   font-size: 8pt;
+//   float: right;
+//   margin: 8px;
+// }
+
+
+// .dialog-toolbar {
+//   mat-toolbar {
+//     flex: 1 1 auto;
+//     text-align: center;
+//     padding-top: 5px;
+//     padding-bottom: 10px;
+//     border: 1px solid red;
+//   }
+// }
+
+// //@import "~ngx-toastr/toastr-bs4-alert";
+// //@import "spinner";
+// //@import "~animate.css/animate.min.css";
+// //@import "~bootstrap-table/dist/bootstrap-table.min.css";
+// //@import "~bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.css";
+// //@import "~@ng-select/ng-select/themes/default.theme.css";
+
+// .main-container {
+//   //margin-top: 120px;
+//   //margin-left: 235px;
+//   padding: 10px;
+//   //-ms-overflow-x: hidden;
+//   overflow-x: hidden;
+//   overflow-y: auto;
+//   position: relative;
+//   //overflow: hidden;
+//   //height:85vh;
+// }
+// /*@media screen and (max-width: 992px) {
+//   .main-container {
+//       margin-left: 0px !important;
+//   }
+// }*/
+
+
+// .btn-circle {
+//   width: 30px;
+//   height: 30px;
+//   padding: 3px 0px;
+//   border-radius: 15px;
+//   text-align: center;
+//   font-size: 12px;
+//   line-height: 1.42857;
+// }
+
+// .btn-circle.btn-lg {
+//   width: 50px;
+//   height: 50px;
+//   padding: 8px 8px;
+//   border-radius: 25px;
+//   font-size: 18px;
+//   line-height: 1.379;
+// }
+
+
+// .btn-circle.btn-xl {
+//   width: 70px;
+//   height: 70px;
+//   padding: 10px 16px;
+//   border-radius: 35px;
+//   font-size: 24px;
+//   line-height: 1.33;
+// }
+
+
+// .fs-12 {
+//   font-size: 12px;
+// }
+
+// .breadcrumb-item.active {
+//   color: #42484c !important;
+// }
+
+// .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+//   //background-color:lightblue;
+//   font-weight: 500;
+//   font-size: unset;
+// }
+
+// .custom-control-label, .ng-select .ng-select-container .ng-value-container .ng-input > input {
+//   cursor: pointer !important;
+// }
+
+// .invalid-feedback {
+//     position: absolute !important;
+//     margin-top: 0;
+//     font-size: 70%;
+// }
+
+// label {
+//   margin-bottom: 1px;
+//   font-size: smaller;
+// }
+
+//  .avatar {
+//   vertical-align: middle;
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 60%;
+// }
+
+// /*
+// .header .navbar {
+//   padding: 0.8rem 1rem 1rem
+// }
+
+// .header .navbar .nav-item {
+//   //border-bottom: 2px solid #ced4da;
+//   margin: 0 1rem 0 0
+// }
+
+// .header .navbar .nav-item.active {
+//   border-color: #005DB4;
+//   border-width: 3px;
+// }
+
+// .header .navbar .dropdown-menu {
+//   margin-bottom: 1rem
+// } */
+
+

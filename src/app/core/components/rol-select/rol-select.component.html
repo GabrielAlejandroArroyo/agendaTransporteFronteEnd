@@ -1,0 +1,28 @@
+<div *ngIf="labelValue">
+    <mat-label>{{labelValue}}</mat-label>
+</div>
+  
+<div>
+  <mat-form-field>
+    <mat-select [formControl]="rolCtrl" placeholder="Rol" #singleSelect>
+      <mat-option>
+        <ngx-mat-select-search 
+          [noEntriesFoundLabel]="noEntriesFoundLabel"  
+          [placeholderLabel]="placeholderLabel"
+          [indexAndLengthScreenReaderText]="indexAndLengthScreenReaderText"
+          [formControl]="rolFilterCtrl">
+        </ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let rol of filteredRol | async" [value]="rol">
+        {{rol.descripcion}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div *ngIf="showSelected">
+<mat-label>
+    Seleccionado: {{rolCtrl.value?.idRol}} // {{rolCtrl.value?.descripcion}}
+</mat-label>
+</div>
+  

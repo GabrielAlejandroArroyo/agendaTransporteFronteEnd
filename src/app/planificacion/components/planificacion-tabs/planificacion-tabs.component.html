@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-header>
+      <mat-card-title>Planificación de viajes</mat-card-title>
+  </mat-card-header>
+</mat-card>
+<mat-tab-group dynamicHeight (selectedTabChange)="onTabClick($event)">
+  <mat-tab *ngIf="this.esTransportista" label="Pendientes de reservar">
+
+    <app-planificacion-list [tipo]="'PENDIENTES'" id="viajesPendientesCtrl" [noRowLabel]="'No hay viajes disponibles para reservar'"></app-planificacion-list>
+
+  </mat-tab>
+  <mat-tab *ngIf="this.esTransportista" label="Reservados">
+
+    <app-planificacion-list [tipo]="'RESERVADOS'" id="viajesReservadosCtrl" [noRowLabel]="'No hay viajes reservados'"></app-planificacion-list>
+
+  </mat-tab>
+  <mat-tab *ngIf="this.esTransportista" label="Ingresados">
+
+    <app-planificacion-list [tipo]="'INGRESADOS'" id="viajesIngresadosCtrl" [noRowLabel]="'No hay viajes ingresados'"></app-planificacion-list>
+
+  </mat-tab>
+  <mat-tab *ngIf="this.esAdmin || this.esPlanificador" label="Vigentes">
+    <ng-template matTabContent>
+      <app-planificacion-list [tipo]="'TODOS'" id="viajesCtrl" [noRowLabel]="'No hay viajes planificados'"></app-planificacion-list>
+    </ng-template>
+  </mat-tab>
+
+</mat-tab-group>

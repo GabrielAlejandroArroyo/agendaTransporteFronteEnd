@@ -1,0 +1,119 @@
+table {
+  width: 100%;
+}
+
+.mat-cell-action {
+  text-align: center;
+/*   justify-content:center; */
+}
+
+.mat-icon{
+  text-align: center;
+    justify-content:center;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-column-action {
+  display: inline-flex;
+}
+
+@media screen and (max-width:1024px){
+  .mat-column-idUsuario {
+    width: 20%;
+    padding-left: 1%;
+
+  }
+
+  .mat-column-user {
+    width: 20%;
+    padding-left: 1%;
+  }
+
+  .mat-column-transpGrillaStr {
+    width: 20%;
+    padding-left: 1%;
+  }
+
+  .mat-column-rolGrillaStr {
+    width: 20%;
+    padding-left: 1%;
+  }
+
+  .mat-column-action {
+    width: 20%;
+    display: inline-flex;
+    padding-left: 1%;
+  }
+
+}
+
+@media screen and (max-width:730px){
+
+
+  .mat-column-idUsuario {
+    font-size: 11px;
+    width: 20%;
+  }
+
+  .mat-column-user {
+    font-size: 11px;
+    width: 20%;
+  }
+
+  .mat-column-transpGrillaStr {
+    font-size: 11px;
+    width: 20%;
+  }
+
+  .mat-column-rolGrillaStr {
+    font-size: 11px;
+    width: 20%;
+  }
+
+  .mat-column-action {
+    font-size: 11px;
+    width: 20%;
+  }
+}
+
+@media screen and (max-width:480px){
+
+  .mat-column-idUsuario {
+    font-size: 11px;
+    width: 25%;
+    display: none;
+  }
+}
+
+@media screen and (max-width:360px){
+
+  .mat-icon{
+    transform: scale(.9);
+  }
+
+  .mat-column-user {
+    font-size: 10px;
+    width: 25%;
+  }
+
+  .mat-column-transpGrillaStr {
+    font-size: 10px;
+    width: 25%;
+  }
+
+  .mat-column-rolGrillaStr {
+    font-size: 10px;
+    width: 25%;
+  }
+
+  .mat-column-action {
+    font-size: 10px;
+    width: 25%;
+  }
+}
+
+

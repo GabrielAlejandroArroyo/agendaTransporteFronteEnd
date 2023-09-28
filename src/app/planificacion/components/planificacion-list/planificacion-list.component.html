@@ -1,0 +1,104 @@
+<div class="overlay" *ngIf="viajesData==null">
+  <ngx-loading [show]="true" ></ngx-loading>
+</div>
+<mat-card>
+
+
+
+  <div class="tablameterialSort">
+
+    <button *ngIf="this.esAdmin || this.esPlanificador" (click)="crear()" mat-mini-fab color="primary" matTooltip="Crear planificaciones">
+      <mat-icon>control_point</mat-icon>
+    </button>
+
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table matSort [dataSource]="viajesData"> <!-- (matSortChange)= "sortColumn($event)" -->
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numero">
+          <th hidden mat-header-cell *matHeaderCellDef mat-sort-header>Planificación</th>
+          <td hidden mat-cell *matCellDef="let row"> {{row.numero}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaCargaStr"> <!-- solo para búsquedas -->
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+          <td mat-cell *matCellDef="let row"> {{row.fechaCargaStr}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="fechaCarga">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha carga</th>
+          <td mat-cell *matCellDef="let row"> {{row.fechaCarga | date: 'dd/MM/yyyy'}} </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="horaCarga">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora</th>
+          <td mat-cell *matCellDef="let row"> {{row.horaCarga}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="origen">
+          <th hidden mat-header-cell *matHeaderCellDef mat-sort-header>Origen</th>
+          <td hidden mat-cell *matCellDef="let row">{{row.origen}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="destino">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Destino</th>
+          <td mat-cell *matCellDef="let row">{{row.destino}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+          <td mat-cell *matCellDef="let row"> {{row.estado}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let row" class="action-link">
+
+              <!-- Solo se permite cancelar la planificaciòn si el estado no es
+                CANCELADO, CANCELADO POR SISTEMA, CANCELADO POR PLANIFICADOR -->
+                <button *ngIf="((this.esAdmin || this.esPlanificador) && (row.cabecera.estado.codigo < '20'))"
+                  (click)="cancelarPlanificacion(row.cabecera)" mat-mini-fab color="primary" matTooltip="Cancelar planificación">
+                  <mat-icon>delete</mat-icon>
+                </button>
+
+                <button *ngIf="this.esPendientes && this.esTransportista " (click)="reservar(row.cabecera)" mat-mini-fab color="primary" matTooltip="Reservar viaje">
+                  <mat-icon>update</mat-icon>
+                </button>
+
+                <button *ngIf="this.esReservados && this.esTransportista" (click)="modificarReserva(row.cabecera)" mat-mini-fab color="primary" matTooltip="Modificar reserva">
+                  <mat-icon>edit</mat-icon>
+                </button>
+
+                <button *ngIf="this.esReservados && this.esTransportista" (click)="cancelarReserva(row.cabecera)" mat-mini-fab color="primary" matTooltip="Cancelar reserva">
+                  <mat-icon>delete</mat-icon>
+                </button>
+
+                <!-- TODOS PUEDEN SOLO VER READONLY -->
+                <button (click)="ver(row.cabecera)" mat-mini-fab color="primary" matTooltip="Ver">
+                  <mat-icon>read_more</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4" *ngIf="input.value===''">{{this.noRowLabel}}</td>
+          <td class="mat-cell" colspan="4" *ngIf="input.value!=''">{{this.noRowLabel}} con "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+    </div>
+  </div>
+</mat-card>

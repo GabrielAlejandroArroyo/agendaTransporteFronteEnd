@@ -1,0 +1,67 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <!-- Perfil de usuario permite cambio de contraseña, telefono, email, nombre y apellido -->
+      <a mat-list-item href="profile">
+        <mat-icon>person</mat-icon>
+        Perfil ({{usuario?.user}})
+      </a>
+
+      <mat-divider></mat-divider>
+      <!-- Administraciòn de usuarios y roles -->
+      <a *ngIf="this.esAdmin" mat-list-item href="admin/users">
+        <mat-icon>people</mat-icon>
+        Usuarios
+      </a>
+
+      <!-- Gestiòn de roles -->
+<!--       <a *ngIf="this.esAdmin" mat-list-item href="admin/roles">Roles</a>  -->
+
+<!-- Gestiòn de viajes -->
+      <a mat-list-item href="viajes">
+        <mat-icon>schedule</mat-icon>
+        Viajes
+      </a>
+      <mat-divider></mat-divider>
+
+      <!-- Gestiòn de templates -->
+<!--       <a *ngIf="this.esAdmin || this.esPlanificador" mat-list-item href="admin/templatecabecera/create">Template Viajes Cabecera </a> -->
+      <button mat-list-item (click)="logout()">
+        <mat-icon>meeting_room</mat-icon>
+        Salir
+      </button>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+<!--     <mat-toolbar color="primary"> -->
+    <mat-toolbar>
+      <button color="primary"
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <img class="Logo" src="assets/images/logo_logistica.png" alt="Logistica S.A." width="233">
+
+
+      <!-- User profile -->
+<!--       <div class="ml-auto d-none d-md-flex align-items-center user-container" style="z-index: 1000">
+        <span class="mat-body">
+          {{usuario?.nombre}} {{usuario?.apellido}} ({{usuario?.user}})<br/>
+          {{profile}}</span>
+        <img src="assets/images/user-avatar.png" class="avatar">
+      </div> -->
+
+    </mat-toolbar>
+    <!-- {{this.profile}} -->
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

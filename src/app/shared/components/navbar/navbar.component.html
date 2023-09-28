@@ -1,0 +1,31 @@
+<!-- <p>navigationbar component</p> -->
+<div class="navbar-nav">
+<mat-toolbar>
+  <mat-toolbar-row>
+      <li class="nav-item dropdown" [routerLinkActive]="['active']">
+        <a href="#" mat-button data-toggle="dropdown">Planificación<strong class="caret"></strong></a>
+        <ul class="dropdown-menu multi-level">
+            <li><a mat-button class="dropdown-item" [routerLink]="['/planificacion']">Crear 1</a></li>
+            <li><a mat-button class="dropdown-item" [routerLink]="['/planificacion']">Crear desde template</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown" [routerLinkActive]="['active']">
+          <a mat-button href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Administración
+          </a>
+          <ul class="dropdown-menu">
+              <li>
+                <a mat-button [routerLink]="['/users']" class="dropdown-item" href="#">Usuarios</a>
+              </li>
+              <li>
+                <a mat-button [routerLink]="['/roles']" class="dropdown-item" href="#">Roles</a>
+              </li>
+              <li>
+                <a mat-button [routerLink]="['/admin']" class="dropdown-item" href="#">Admin</a>
+              </li>
+          </ul>
+      </li>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+</div>

@@ -1,0 +1,62 @@
+<form [formGroup]="formviajedetalle">
+  <mat-card>
+    <mat-form-field class="largefield" appearance="legacy">
+      <input  placeholder="Id Detalle" formControlName="idDetallePlanificacion" matInput type="text" maxlength="40" >
+    </mat-form-field>
+    <br>
+    <mat-form-field class="largefield" appearance="legacy">
+      <input  placeholder="Fecha" formControlName="fechaHoraCreacion" matInput type="datetime" maxlength="40" >
+    </mat-form-field>
+    <br>
+    <mat-form-field *ngIf="this.formviajedetalle.get('idmuelle')!==null"  class="largefield" appearance="legacy">
+      <input placeholder="Muelle" formControlName="idmuelle" matInput type="text" maxlength="140" readonly>
+    </mat-form-field>
+    <br>
+    <div formGroupName = "chofer">
+      <mat-label>Chofer</mat-label>
+      <br>
+      <mat-form-field  class="largefield" appearance="legacy">
+        <input placeholder="Dni" formControlName="dni" matInput type="text" maxlength="140" readonly>
+      </mat-form-field>
+      <mat-form-field  class="largefield" appearance="legacy">
+        <input placeholder="Licencia" formControlName="licencia" matInput type="text" maxlength="140" readonly>
+      </mat-form-field>
+      <br>
+      <mat-form-field  class="largefield" appearance="legacy">
+        <input placeholder="Nombre" formControlName="nombre" matInput type="text" maxlength="140" readonly>
+      </mat-form-field>
+      <mat-form-field  class="largefield" appearance="legacy">
+        <input placeholder="Apellidos" formControlName="apellido" matInput type="text" maxlength="140" readonly>
+      </mat-form-field>
+    </div>
+    <div formGroupName = "equipo">
+      <mat-label>Equipo</mat-label>
+      <br>
+      <mat-form-field  class="largefield" appearance="legacy">
+        <input placeholder="Tipo" formControlName="tipo" matInput type="text" maxlength="140" readonly>
+      </mat-form-field>
+      <mat-form-field  class="largefield" appearance="legacy">
+        <input placeholder="Patente" formControlName="patente" matInput type="text" maxlength="140" readonly>
+      </mat-form-field>
+    </div>
+    <div formGroupName = "tractor">
+      <mat-label>Tractor</mat-label>
+      <br>
+      <mat-form-field  class="largefield" appearance="legacy">
+        <input placeholder="Tipo" formControlName="tipo" matInput type="text" maxlength="140" readonly>
+      </mat-form-field>
+      <mat-form-field  class="largefield" appearance="legacy">
+        <input placeholder="Patente" formControlName="patente" matInput type="text" maxlength="140" readonly>
+      </mat-form-field>
+    </div>
+    <mat-form-field *ngIf="this.formviajedetalle.get('observaciones')==null" appearance="legacy">
+      <input  placeholder="Observaciones" formControlName="observaciones" matInput type="datetime" maxlength="40" >
+    </mat-form-field>
+    <br>
+  </mat-card>
+
+  <mat-card-actions>
+    <button routerLink="/admin/viajes" mat-raised-button color="primary">Cancelar</button>
+  </mat-card-actions>
+</form>
+

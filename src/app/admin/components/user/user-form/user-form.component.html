@@ -1,0 +1,73 @@
+ <form [formGroup]="formuser" (ngSubmit)="saveUser($event)">
+  <mat-card>
+
+    <mat-card-header *ngIf="isAddMode"><mat-card-title>Creación de usuarios</mat-card-title></mat-card-header>
+    <mat-card-header *ngIf="!isAddMode && !isViewMode"><mat-card-title>Modificación de usuarios</mat-card-title></mat-card-header>
+    <mat-card-header *ngIf="!isAddMode && isViewMode"><mat-card-title>Consulta de usuarios</mat-card-title></mat-card-header>
+
+    <mat-form-field appearance="legacy">
+      <input  placeholder="Usuario" formControlName="user" matInput type="text" maxlength="20">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <input  placeholder="Nombre" formControlName="nombre" matInput type="text">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <input  placeholder="Apellido" formControlName="apellido" matInput type="text">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <input  placeholder="Email" formControlName="email" matInput type="text">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <input type="text"
+              placeholder="Transportista"
+              aria-label="Number"
+              matInput
+              [formControl]="transportistaListCtrl"
+              [matAutocomplete]="transportistaauto"
+              [readonly]="isViewMode">
+      <mat-autocomplete #transportistaauto="matAutocomplete" (optionSelected)='getTransportista($event.option.value)' >
+        <mat-option  *ngFor="let transportista of filteredTransportista | async" [value]="transportista.codigoNombre" >
+          {{transportista.codigoNombre}}
+        </mat-option>
+      </mat-autocomplete>
+      <button type="button" *ngIf="this.transpSelected && !this.isViewMode " mat-button matSuffix mat-icon-button aria-label="Clear" (click)='clearTransportista()'>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+        <input type="text"
+               placeholder="Rol"
+               aria-label="Number"
+               matInput
+               [formControl]="rolListCtrl"
+               [matAutocomplete]="rolauto"
+               [readonly]="isViewMode">
+        <mat-autocomplete #rolauto="matAutocomplete" (optionSelected)='getRol($event.option.value)'>
+          <mat-option  *ngFor="let rol of filteredRol | async" [value]="rol.idDescripcion" >
+            {{rol.idDescripcion}}
+          </mat-option>
+        </mat-autocomplete>
+        <button type="button" *ngIf="this.rolSelected && !this.isViewMode" mat-button matSuffix mat-icon-button aria-label="Clear" (click)='clearRol()'>
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <input placeholder="Teléfono" formControlName="telefono" matInput type="tel">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <input  placeholder="Contraseña" formControlName="password" matInput type="password">
+    </mat-form-field>
+    <br>
+  </mat-card>
+  <mat-card-actions>
+    <button [disabled]="formuser.invalid && isViewMode"  mat-raised-button color="primary" type="submit">Guardar</button>
+    <button routerLink="/admin/users" mat-raised-button color="primary">Cancelar</button>
+  </mat-card-actions>
+</form>

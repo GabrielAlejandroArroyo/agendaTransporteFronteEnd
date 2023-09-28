@@ -1,0 +1,39 @@
+
+<app-single-select 
+  [dataSource]="transportistas" 
+  [dataShow]="'nombre'" 
+  [dataValue]="'codigo'" 
+  [defaultValue]="" 
+  [inputType]="'example'" 
+  [placeholder]="'Transportista'" 
+  (onSelectionChange)="onSelectionChange($event)"> 
+</app-single-select>
+<br>
+<!-- <div *ngIf="labelValue">
+  <mat-label>{{labelValue}}</mat-label>
+</div>
+
+<div>
+  <mat-form-field>
+    <mat-select [formControl]="transpCtrl" placeholder="Transportista" #singleSelect>
+      <mat-option>
+        <ngx-mat-select-search 
+          [noEntriesFoundLabel]="noEntriesFoundLabel"  
+          [placeholderLabel]="placeholderLabel" 
+          [indexAndLengthScreenReaderText]="indexAndLengthScreenReaderText"
+          [formControl]="transpFilterCtrl">
+        </ngx-mat-select-search>
+      </mat-option>
+
+      <mat-option *ngFor="let transp of filteredTrans | async" [value]="transp">
+        {{transp.nombre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div *ngIf="showSelected">
+  <mat-label>
+    Seleccionado: {{transpCtrl.value?.codigo}} // {{transpCtrl.value?.nombre}}
+  </mat-label>
+</div> -->
